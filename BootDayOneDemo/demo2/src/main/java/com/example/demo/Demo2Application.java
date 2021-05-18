@@ -7,8 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Demo2Application {
 
     public static void main(String[] args) {
-//        SpringApplication.run(Demo2Application.class, args);
-        System.out.println("Hellooooooo");
+        // to run a spring boot app 
+        SpringApplication.run(Demo2Application.class, args);
+        // don't use sout command here 
+        // create a rest controller to call from browser 
+        // just for demonstration  
+//         System.out.println("Hellooooooo");
     }
 
 
