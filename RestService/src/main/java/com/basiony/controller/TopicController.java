@@ -3,9 +3,12 @@ package com.basiony.controller;
 import com.basiony.modle.Topic;
 import com.basiony.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TopicController {
@@ -17,29 +20,32 @@ public class TopicController {
     private TopicService topicService;
 
     @GetMapping("/topics")
-    public List<Topic> getAllTopics() {
-        return topicService.getAllTopics();
+    public ResponseEntity<List<Topic>> getAllTopics() {
+        return ResponseEntity.ok(topicService.getAllTopics());
     }
 
 
     @GetMapping("/topics/{id}")
-    public Topic getTopic(@PathVariable String id) {
-        return topicService.getTopic(id);
+    public ResponseEntity<Topic> getTopic(@PathVariable String id) {
+        return ResponseEntity.ok( topicService.getTopic(id));
     }
 
-    @RequestMapping(value = "/topics", method = RequestMethod.POST)
-    public void addTopic(@RequestBody Topic topic) {
-        topicService.addTopic(topic);
+    @PostMapping(value = "/topics")
+    public ResponseEntity<Topic> addTopic(@RequestBody Topic topic) {
+        topic = topicService.addTopic(topic);
+        return ResponseEntity.status(HttpStatus.CREATED).body(topic);
     }
 
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.PUT)
-    public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
-        topicService.updateTopic(topic, id);
+    @PutMapping(value = "/topics/{id}")
+    public ResponseEntity<Topic> updateTopic(@RequestBody Topic topic, @PathVariable String id) {
+        Topic updateTopic = topicService.updateTopic(topic, id);
+        return ResponseEntity.ok(updateTopic);
     }
 
 
-    @RequestMapping(value = "/topics/{id}", method = RequestMethod.DELETE)
-    public void deleteTopic(@PathVariable String id) {
+    @DeleteMapping(value = "/topics/{id}")
+    public ResponseEntity<Void> deleteTopic(@PathVariable String id) {
         topicService.deleteTopic(id);
+        return ResponseEntity.noContent().build();
     }
 }
