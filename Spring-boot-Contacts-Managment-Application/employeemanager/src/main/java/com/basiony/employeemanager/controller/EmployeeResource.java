@@ -10,7 +10,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+/*fixme use
+ GET    /employees         to return all employees     returns 200 ok
+ POST   /employees         to create a resource        returns 201 created
+ GET    /employees/{id}    to return a resource        returns 200 ok
+ PUT    /employees/{id}    to update a resource        returns 200 ok with body or 204 no content
+ DELETE /employees/{id}    to delete a resource        returns 204 no content
+ ------------------------
+ don't use verbs on uri like find , add or update
+*/
 @RequestMapping("/employee")
 public class EmployeeResource {
 

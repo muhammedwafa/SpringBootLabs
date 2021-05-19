@@ -5,6 +5,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+/*
+    fixme
+    never return Entity to the consumer use a DTO
+    use Lombok @Getter @Setter @AllArgsConstructor
+ */
 public class Employee implements Serializable { //because it is gonna be transformed to so many forms, so it is recommended
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

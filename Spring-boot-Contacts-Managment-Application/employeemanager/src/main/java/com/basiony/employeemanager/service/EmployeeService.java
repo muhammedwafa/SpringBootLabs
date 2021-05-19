@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+/*
+    fixme use interfaces
+ */
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
@@ -18,7 +21,9 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
+    //fixme use java doc
+    // use dto as a request and a response
+    // don't expose Entity to consumer
     //add employee
     public Employee addEmployee(Employee employee) {
         employee.setEmployeeCode(UUID.randomUUID().toString());
@@ -36,6 +41,7 @@ public class EmployeeService {
     }
 
     public void deleteEmployee(Long id) {
+        // fixme search first for a resource before delete it
         employeeRepository.deleteById(id);
     }
 
